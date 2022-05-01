@@ -5,51 +5,11 @@ The files in this repository were used to configure the network depicted below.
 https://github.com/MeleMele9757/cyber-security-/blob/main/diagrams/project-net-map
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
-
-  ---
-- name: Installing and Launch Filebeat
-  hosts: webservers
-  become: yes
-  tasks:
-    # Use command module
-  - name: Download filebeat .deb file
-    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
-
-    # Use command module
-  - name: Install filebeat .deb
-    command: dpkg -i filebeat-7.4.0-amd64.deb
-
-    # Use copy module
-  - name: Drop in filebeat.yml
-    copy:
-      src: /etc/ansible/filebeat-config.yml
-      dest: /etc/filebeat/filebeat.yml
-
-    # Use command module
-  - name: Enable and Configure System Module
-    command: filebeat modules enable system
-
-    # Use command module
-  - name: Setup filebeat
-    command: filebeat setup
-
-    # Use command module
-  - name: Start filebeat service
-    command: service filebeat start
-
-    # Use systemd module
-  - name: Enable service filebeat on boot
-    systemd:
-      name: filebeat
-      enabled: yes
-
-This document contains the following details:
-- Description of the Topology
-- Access Policies
-- ELK Configuration
-  - Beats in Use
-  - Machines Being Monitored
-- How to Use the Ansible Build
+filebeat-playbook.yml
+install-elk.yml
+metricbeat-playbook.yml
+filebeat-config.yml
+metricbeat-config.yml
 
 
 ### Description of the Topology
